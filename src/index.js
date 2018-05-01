@@ -4,16 +4,17 @@ import AppRouter from 'components/AppRouter';
 import createStore from 'store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import './App.css';
 
 import './index.css';
 
 const store = createStore();
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <AppRouter />
-    </Provider>
-  </BrowserRouter>,
-  document.getElementById('root'),
+    <BrowserRouter>
+        <Provider store={store}>
+            <AppRouter />
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
 );

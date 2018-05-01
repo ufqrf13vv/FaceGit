@@ -62,7 +62,6 @@ _Высокий старт будет компенсируется легким�
         const isAuthorized = yield select(getIsAuthorized);
         const localStorageToken = yield call(getTokenFromLocalStorage);
         let token;
-
         if (!isAuthorized && localStorageToken) {
           token = localStorageToken;
           yield put(authorize());
@@ -70,12 +69,9 @@ _Высокий старт будет компенсируется легким�
           const action = yield take(authorize);
           token = action.payload;
         }
-
         yield call(setTokenApi, token);
         yield call(setTokenToLocalStorage, token);
-
         yield take(logout);
-
         yield call(removeTokenFromLocalStorage);
         yield call(clearTokenApi);
       }

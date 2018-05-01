@@ -1,8 +1,10 @@
 import { fork } from 'redux-saga/effects';
-import { fetchUserWatch } from './users';
-import { authFlow } from './auth';
+import authWatch from './auth';
+import userWatch from './users';
+import followersWatch from './followers';
 
 export default function*() {
-  yield fork(authFlow);
-  yield fork(fetchUserWatch);
+    yield fork(authWatch);
+    yield fork(userWatch);
+    yield fork(followersWatch);
 }
