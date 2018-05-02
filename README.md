@@ -204,7 +204,7 @@ import {App} from './App'
 
 # Home project: facegit 3/3
 
-[Пример 3ей, финальной части](http://5a217be0df995377fdc6d4f8.jovial-wright-18bc74.netlify.com/)
+[Пример 3ей, финальной части](http://5ae9a7008df8941de0c12dcf.pensive-mestorf-58a1dc.netlify.com)
 
 > Я добавил отдельный уровень сетевых запросов через сагу `request`, а так же экшены и редьюсер
 > `network`. Это удобный маневр, если нужно делать централизованную обработку сетевых запросов, в
