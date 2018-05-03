@@ -7,7 +7,7 @@ import Followers from '../Followers';
 import Error from '../Error';
 import Loader from '../Loader';
 
-class UserPage extends Component {
+export class UserPage extends Component {
 
     componentDidMount() {
         const { match: { params: { name } } } = this.props;
@@ -22,11 +22,6 @@ class UserPage extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        //const { match: { params: { name } } } = this.props;
-        //const { match: { params: { name: nextName } } } = nextProps;
-        //if (name !== nextName) {
-        //    this.props.fetchUserRequest(nextName);
-        //}
         console.log(this.props, nextProps)
     }
 
@@ -54,7 +49,7 @@ class UserPage extends Component {
                         </div>
                         <div className="app__user-description">
                             <h3 className="app-user__login">Login: {user.data.login}</h3>
-                            <p className="app-user__text">Followers: {user.data.followers}</p>
+                            <p className="app-user__text app-user__followers">Followers: {user.data.followers}</p>
                             <p className="app-user__text">Public repositories: {user.data.public_repos}</p>
                         </div>
                     </div>

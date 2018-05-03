@@ -23,11 +23,14 @@ export default function* authWatch() {
 
         if (!isAuthorized || localStorageToken) {
             if (localStorageToken) {
+                //console.log('localStorageToken')
                 yield put(authSuccess());
             } else {
+                //console.log('!localStorageToken')
                 yield takeEvery(authRequest, authorization);
             }
         }
+
         yield call(setTokenApi, localStorageToken);
 
         yield take(logout);

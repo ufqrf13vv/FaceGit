@@ -1,10 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { followersRequest, followersSuccess, followersFailure } from '../ducks/followers';
 import { getUserFollowers } from '../api';
+import requestFlow from './request';
 
 function* getFollowersData(action) {
     try {
-        const result = yield call(getUserFollowers, action.payload);
+        const result = yield call(requestFlow, getUserFollowers, action.payload);
 
         yield put(followersSuccess(result.data));
     } catch (error) {

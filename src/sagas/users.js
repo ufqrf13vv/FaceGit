@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getTokenOwner, getUserInformation } from '../api';
 import { userRequest, userSuccess, userFailure, userFollowerRequest } from '../ducks/users';
+import requestFlow from './request';
 
 /**
  *
@@ -11,9 +12,9 @@ function* getUserData(action) {
         let result;
 
         if (userRequest.toString() === action.type) {
-            result = yield call(getTokenOwner, action.payload)
+            result = yield call(requestFlow, getTokenOwner, action.payload);
         } else {
-            result = yield call(getUserInformation, action.payload);
+            result = yield call(requestFlow, getUserInformation, action.payload);
         }
         yield put(userSuccess(result));
     } catch(error) {
@@ -22,5 +23,5 @@ function* getUserData(action) {
 }
 
 export default function* userWatch() {
-    yield takeLatest([userRequest, userFollowerRequest], getUserData)
+    yield takeLatest([userRequest, userFollowerRequest], getUserData);
 }

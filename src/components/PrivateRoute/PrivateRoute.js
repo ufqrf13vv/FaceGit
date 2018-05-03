@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { getTokenFromLocalStorage } from '../../localStorage';
 
-export default class PrivateRoute extends PureComponent {
+export default class PrivateRoute extends Component {
 
     render() {
         const { component: Component, ...rest } = this.props;
@@ -11,9 +11,8 @@ export default class PrivateRoute extends PureComponent {
         return (
             <Route
                 {...rest}
-                render={props =>token ?
-                <Component {...props} /> :
-                <Redirect to="/login" /> }
+                render={props =>
+                token ? <Component {...props} /> : <Redirect to="/login" /> }
             />
         );
     }
