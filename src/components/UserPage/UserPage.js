@@ -22,11 +22,23 @@ export class UserPage extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.props, nextProps)
+        const { match: { params: { name } } } = this.props;
+        const { match: { params: { name: nextName } } } = nextProps;
+
+        if (name !== nextName) {
+            console.log('nextName', nextName, 'name', name)
+            //if (nextName === undefined) {
+            //    const token = getTokenFromLocalStorage();
+            //
+            //    this.props.userRequest(token);
+            //} else {
+            this.props.userFollowerRequest(nextName);
+            //}
+        }
     }
 
     render() {
-        const { user, userIsFetched, userIsFetching } = this.props;
+        const { userIsFetched, userIsFetching } = this.props;
 
         if (userIsFetching) {
             return (
@@ -40,23 +52,25 @@ export class UserPage extends Component {
                     isError={true}
                     errorText={'Пользователь не найден!!'}/>
             );
-        } else {
-            return (
-                <div>
-                    <div className="app-user">
-                        <div className="app-user__photo">
-                            <img src={user.data.avatar_url} alt={user.data.login}/>
-                        </div>
-                        <div className="app__user-description">
-                            <h3 className="app-user__login">Login: {user.data.login}</h3>
-                            <p className="app-user__text app-user__followers">Followers: {user.data.followers}</p>
-                            <p className="app-user__text">Public repositories: {user.data.public_repos}</p>
-                        </div>
-                    </div>
-                    <Followers login={user.data.login}/>
-                </div>
-            )
         }
+
+        const { login, avatar_url, followers, public_repos } = this.props.user;
+
+        return (
+            <div>
+                <div className="app-user">
+                    <div className="app-user__photo">
+                        <img src={avatar_url} alt={login}/>
+                    </div>
+                    <div className="app__user-description">
+                        <h3 className="app-user__login">Login: {login}</h3>
+                        <p className="app-user__text app-user__followers">Followers: {followers}</p>
+                        <p className="app-user__text">Public repositories: {public_repos}</p>
+                    </div>
+                </div>
+                <Followers login={login}/>
+            </div>
+        );
     }
 }
 

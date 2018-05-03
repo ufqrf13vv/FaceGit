@@ -11,7 +11,7 @@ const {
 );
 
 const initialState = {
-    data: {},
+    data: null,
     error: null,
     isFetched: false,
     isFetching: false
@@ -23,7 +23,7 @@ export default handleActions(
             ...state,
             isFetching: true,
             isFetched: false,
-            data: {},
+            data: null,
             error: null
         }),
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout, getIsAuthorized } from '../../ducks/auth';
 import { getNetworkError } from '../../ducks/network';
@@ -50,7 +50,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { logout };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AppRouter);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(AppRouter)
+);

@@ -16,7 +16,7 @@ function* getUserData(action) {
         } else {
             result = yield call(requestFlow, getUserInformation, action.payload);
         }
-        yield put(userSuccess(result));
+        yield put(userSuccess(result.data));
     } catch(error) {
         yield put(userFailure(error));
     }
