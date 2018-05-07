@@ -24,16 +24,14 @@ export class UserPage extends Component {
     componentWillReceiveProps(nextProps) {
         const { match: { params: { name } } } = this.props;
         const { match: { params: { name: nextName } } } = nextProps;
-
         if (name !== nextName) {
-            console.log('nextName', nextName, 'name', name)
-            //if (nextName === undefined) {
-            //    const token = getTokenFromLocalStorage();
-            //
-            //    this.props.userRequest(token);
-            //} else {
-            this.props.userFollowerRequest(nextName);
-            //}
+            if (nextName === undefined) {
+                const token = getTokenFromLocalStorage();
+
+                this.props.userRequest(token);
+            } else {
+                this.props.userFollowerRequest(nextName);
+            }
         }
     }
 
@@ -54,7 +52,7 @@ export class UserPage extends Component {
             );
         }
 
-        const { login, avatar_url, followers, public_repos } = this.props.user;
+        const { login, id, avatar_url, followers, public_repos } = this.props.user;
 
         return (
             <div>
@@ -68,7 +66,9 @@ export class UserPage extends Component {
                         <p className="app-user__text">Public repositories: {public_repos}</p>
                     </div>
                 </div>
-                <Followers login={login}/>
+                <Followers
+                    key={id}
+                    login={login}/>
             </div>
         );
     }
@@ -81,7 +81,7 @@ const mapStateToProps = state => ({
     userError: getUserError(state)
 });
 
-const mapDispatchToProps = {userRequest, userFollowerRequest};
+const mapDispatchToProps = { userRequest, userFollowerRequest };
 
 export default connect(
     mapStateToProps,

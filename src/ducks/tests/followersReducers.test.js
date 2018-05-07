@@ -9,7 +9,7 @@ describe('Reducers followers:', () => {
                 followersRequest()
             );
 
-            expect(nextState.data).toEqual({});
+            expect(nextState.data).toEqual(null);
         });
 
         it('Action followersSuccess наполняют данными data', () => {

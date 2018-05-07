@@ -3,7 +3,7 @@ import { getTokenOwner, setTokenApi, clearTokenApi } from '../api';
 import { getTokenFromLocalStorage, setTokenToLocalStorage, removeTokenFromLocalStorage, } from '../localStorage';
 import { getIsAuthorized, logout, authRequest, authSuccess, authFailure } from '../ducks/auth';
 
-function* authorization(action) {
+export function* authorization(action) {
     try {
         yield call(setTokenApi, action.payload);
 
@@ -23,10 +23,8 @@ export default function* authWatch() {
 
         if (!isAuthorized || localStorageToken) {
             if (localStorageToken) {
-                //console.log('localStorageToken')
                 yield put(authSuccess());
             } else {
-                //console.log('!localStorageToken')
                 yield takeEvery(authRequest, authorization);
             }
         }

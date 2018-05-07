@@ -13,7 +13,7 @@ describe('Reducers users:', () => {
             const user = { someKey: 'some value' };
             const nextState = usersReducer({ data: user }, userRequest());
 
-            expect(nextState.data).toEqual({});
+            expect(nextState.data).toEqual(null);
         });
     });
 

@@ -73,7 +73,7 @@ describe('Компонент UserPage', () => {
 
         it('У компонента Followers должен быть атрибут login с передачей значения через props', () => {
             const login = 'user';
-            wrapper.setProps({ user: {data: { login: login } } });
+            wrapper.setProps({ user: { login: login } });
             const loginProp = wrapper.find('Connect(Followers)').prop('login');
 
             expect(loginProp).toBe(login);

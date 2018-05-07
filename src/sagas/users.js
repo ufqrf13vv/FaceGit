@@ -7,7 +7,7 @@ import requestFlow from './request';
  *
  * @param action
  */
-function* getUserData(action) {
+export function* getUserData(action) {
     try {
         let result;
 

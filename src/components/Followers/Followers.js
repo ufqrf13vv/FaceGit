@@ -12,7 +12,6 @@ export class Followers extends Component {
         const { login } = this.props;
 
         this.props.followersRequest(login);
-
     };
 
     followerList() {
@@ -61,7 +60,7 @@ const mapStateToProps = state => ({
     followersError: getFollowersError(state)
 });
 
-const mapDispatchToProps = {followersRequest};
+const mapDispatchToProps = { followersRequest };
 
 export default connect(
     mapStateToProps,

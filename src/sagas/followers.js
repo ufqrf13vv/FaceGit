@@ -3,7 +3,7 @@ import { followersRequest, followersSuccess, followersFailure } from '../ducks/f
 import { getUserFollowers } from '../api';
 import requestFlow from './request';
 
-function* getFollowersData(action) {
+export function* getFollowersData(action) {
     try {
         const result = yield call(requestFlow, getUserFollowers, action.payload);
 
