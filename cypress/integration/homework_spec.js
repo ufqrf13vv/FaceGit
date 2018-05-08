@@ -14,7 +14,7 @@ describe('Тестирование приложения FaceGit', () => {
             });
 
             it('Ввод токена и вход в систему', () => {
-                cy.get('.app__input').type('6be3f9a923e71df749e1a5ee6ed343bc89b1ffa3').type('{enter}');
+                cy.get('.app__input').type('2441efb226ad11df33780d5f2ebaeed916c06245').type('{enter}');
             });
         });
 
