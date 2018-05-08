@@ -3,13 +3,62 @@ describe('Тестирование приложения FaceGit', () => {
         cy.visit('http://localhost:3000/');
     });
 
-    it('Инпут для ввода токена', () => {
-        cy.visit('http://localhost:3000/login');
-        cy.get('.app__input');
-    });
+    describe('Вход в систему:', () => {
+        describe('Страница Login', () => {
+            beforeEach(() => {
+                cy.visit('http://localhost:3000/login');
+            });
 
-    it('Нажатие Enter для ввода токена', () => {
-        cy.visit('http://localhost:3000/login');
-        cy.get('.app__input').keypress('enter');
+            it('Инпут для ввода токена', () => {
+                cy.get('.app__input');
+            });
+
+            it('Ввод токена и вход в систему', () => {
+                cy.get('.app__input').type('6be3f9a923e71df749e1a5ee6ed343bc89b1ffa3').type('{enter}');
+            });
+        });
+
+        describe('Страница пользователя', () => {
+            describe('Вёрстка', () => {
+                it('Аватар пользователя', () => {
+                    cy.get('.app-user__photo img');
+                });
+
+                it('Логин пользователя', () => {
+                    cy.get('h3.app-user__login');
+                });
+
+                it('Фолловеры пользователя', () => {
+                    cy.get('p.app-user__text.app-user__followers');
+                });
+
+                it('Количество репозиториев пользователя', () => {
+                    cy.get('p.app-user__text').contains('Public repositories:');
+                });
+            });
+
+            describe('Компоненты', () => {
+                it('Компонент Followers', () => {
+                    cy.get('.app__followers');
+                });
+
+                describe('Компонент Follower', () => {
+                    it('Логин фоловера', () => {
+                        cy.get('.app__follower-login');
+                    });
+
+                    it('Аватар фоловера', () => {
+                        cy.get('.app__follower-image img');
+                    });
+                });
+
+                describe('Переход на страницу фолловера', () => {
+                    it('Клик по ссылке', () => {
+                        //cy.get('.app__follower-login').first().click();
+                        //cy.visit('http://localhost:3000/user/mvk85');
+                    });
+                });
+            });
+        });
     });
 });
