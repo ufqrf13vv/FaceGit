@@ -16,3 +16,8 @@ script:
   - yarn build
   - yarn run cypress:run
   - yarn test
+
+deploy:
+  provider: heroku
+  app: facegit
+  api_key: $HEROKU_KEY
